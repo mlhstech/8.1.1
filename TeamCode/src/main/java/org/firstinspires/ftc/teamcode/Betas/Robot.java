@@ -39,6 +39,7 @@ public class Robot extends LinearOpMode{
         fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         bl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        imu.resetYaw();
     }
 
 
@@ -215,7 +216,7 @@ public class Robot extends LinearOpMode{
         fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         bl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         br.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        imu.resetYaw();
+        //imu.resetYaw();
 
         sleep(100);
 
@@ -274,7 +275,7 @@ public class Robot extends LinearOpMode{
         fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         bl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         br.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        imu.resetYaw();
+        //imu.resetYaw();
 
         sleep(100);
 
