@@ -98,14 +98,14 @@ method. The "runOpMode()" method is the main method that runs when the op mode i
         lift.medium();
 
         robot.set_speed(0.3);
-        robot.strafe_right(40);
+        robot.strafe_right(37);
         robot.drive_backward(3);
         lift.medium();
         home.home(); // auto homes onto the poles
         claw.open();
         robot.drive_backward(7);
         robot.turn_left(90);
-        robot.strafe_left(16);
+        robot.strafe_left(14);
 /*
         //drive from medium to stack
         robot.drive_backward(5);

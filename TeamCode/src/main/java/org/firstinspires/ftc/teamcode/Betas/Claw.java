@@ -18,20 +18,20 @@ public class Claw extends LinearOpMode {
         return true;
     }
 
-    public boolean close() {
+    public void close() {
 
-        x.setPosition(0);
+       x.setPosition(0);
         y.setPosition(1);
 
-        return true;
+
     }
 
-    public boolean open() {
+    public void open() {
         y.setPosition(0);
         x.setPosition(1);
 
 
-        return true;
+
     }
 
 

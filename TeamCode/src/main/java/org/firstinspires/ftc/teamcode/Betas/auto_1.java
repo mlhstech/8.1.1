@@ -68,11 +68,14 @@ method. The "runOpMode()" method is the main method that runs when the op mode i
         To_stack stack = new To_stack();
         Lift lift = new Lift();
         Claw claw = new Claw();
+       // s.setPosition(0);
+        //f.setPosition(1);
+        claw.define(s,f);
         claw.close();
 
         home.define(front_left, front_right, back_left, back_right, a, b);
         lift.define(lif);
-        claw.define(s,f);
+
 
 
         /*The code then calls several methods on the "robot" and "home" objects to perform various actions
@@ -92,14 +95,14 @@ method. The "runOpMode()" method is the main method that runs when the op mode i
         lift.medium();
 
         robot.set_speed(0.3);
-        robot.strafe_right(40);
+        robot.strafe_right(35 );
         robot.drive_backward(3);
         lift.medium();
         home.home(); // auto homes onto the poles
         claw.open();
         robot.drive_backward(7);
         robot.turn_left(90);
-        robot.strafe_left(16);
+        robot.strafe_left(14);
         robot.drive_forward(48);
         return true;
     }

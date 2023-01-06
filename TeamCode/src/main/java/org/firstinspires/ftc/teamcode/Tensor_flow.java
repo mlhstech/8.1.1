@@ -50,8 +50,8 @@ public class Tensor_flow extends LinearOpMode {
      * has been downloaded to the Robot Controller's SD FLASH memory, it must to be loaded using loadModelFromFile()
      * Here we assume it's an Asset.    Also see method initTfod() below .
      */
-    private static final String TFOD_MODEL_ASSET = "custom.tflite";
-    //private static final String TFOD_MODEL_FILE  = "/sdcard/FIRST/tflitemodels/custom.tflite";
+   // private static final String TFOD_MODEL_ASSET = "new_model.tflite";
+    private static final String TFOD_MODEL_FILE  = "/sdcard/FIRST/tflitemodels/new1.tflite";
 
 
     private static final String[] LABELS = {
@@ -95,7 +95,7 @@ public class Tensor_flow extends LinearOpMode {
 
 
 
-        Claw claw = new Claw();
+       Claw claw = new Claw();
         imu = hardwareMap.get(IMU.class, "imu");
         front_left = hardwareMap.get(DcMotorEx.class, "0");
         front_right = hardwareMap.get(DcMotorEx.class, "1");
@@ -109,6 +109,8 @@ public class Tensor_flow extends LinearOpMode {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
         initVuforia();
+        telemetry.addData(">", "This is a test to see if code is going to the robot");
+        telemetry.update();
 
         initTfod();
         Tensor_math maths = new Tensor_math();
@@ -206,14 +208,14 @@ public class Tensor_flow extends LinearOpMode {
         int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
                 "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
-        tfodParameters.minResultConfidence = 0.75f;
+        tfodParameters.minResultConfidence = 0.50f;
         tfodParameters.isModelTensorFlow2 = true;
-        tfodParameters.inputSize = 300;
+        tfodParameters.inputSize = 320;
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
 
         // Use loadModelFromAsset() if the TF Model is built in as an asset by Android Studio
         // Use loadModelFromFile() if you have downloaded a custom team model to the Robot Controller's FLASH.
-        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABELS);
-        //tfod.loadModelFromFile(TFOD_MODEL_FILE, LABELS);
+       //tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABELS);
+        tfod.loadModelFromFile(TFOD_MODEL_FILE, LABELS);
     }
 }
