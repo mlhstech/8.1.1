@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.IMU;
 
 @Autonomous
-public class new_Auto extends LinearOpMode {
+public class Multi_test extends LinearOpMode {
     DcMotorEx front_left;
     DcMotorEx front_right;
     DcMotorEx back_left;
@@ -52,7 +52,7 @@ public class new_Auto extends LinearOpMode {
         home.define(front_left, front_right, back_left, back_right, a, b);
         stak.define(front_left, front_right, back_left, back_right, imu, front, back);
         lift.define(lif);
-
+        //Thread low = new Thread(Lift.low());
 
 
 

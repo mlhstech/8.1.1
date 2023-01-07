@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-public class Lift extends LinearOpMode{
+public class lift_multi_test extends LinearOpMode implements Runnable{
 
     DcMotorEx lift;
 
@@ -55,5 +55,25 @@ public class Lift extends LinearOpMode{
     }
 
 
+    @Override
+    public void run() {
 
+    }
+
+    public void run(DcMotorEx a, int b) {
+        lift = a;
+
+        lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        lift_multi_test li = new lift_multi_test();
+
+
+        if (b == 0) {
+        li.ground();
+        } else if (b == 1) {
+        li.low();
+        } else if (b == 2) {
+        li.medium();
+        }
+    }
 }
