@@ -32,6 +32,9 @@ public class Robot extends LinearOpMode{
         br = back_right;
         imu = ime;
 
+
+
+
         fr.setDirection(DcMotor.Direction.REVERSE);
         br.setDirection(DcMotor.Direction.REVERSE);
 
@@ -316,6 +319,10 @@ public class Robot extends LinearOpMode{
 
 
     }
+
+
+
+
 
     public void set_speed(double spee) {
         speed = spee;

@@ -64,7 +64,7 @@ public class To_stack extends LinearOpMode {
         fr.setPower(0);
         br.setPower(0);
 
-        robot.drive_forward(8);
+        //robot.drive_forward(8);
 
 
 
@@ -76,13 +76,19 @@ public class To_stack extends LinearOpMode {
             bl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             br.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-            fl.setPower(0.3);
+           // fl.setPower(0.3);
             bl.setPower(0.3);
-            fr.setPower(-0.3);
+           // fr.setPower(-0.3);
             br.setPower(-0.3);
 
 
         }
+
+        fl.setPower(0);
+        bl.setPower(0);
+        fr.setPower(0);
+        br.setPower(0);
+
 
 
         return true;
