@@ -13,6 +13,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 @TeleOp
 public class This_is_the_most_beta_op extends LinearOpMode {
@@ -57,11 +60,28 @@ public class This_is_the_most_beta_op extends LinearOpMode {
         Thread homem = new Auto_homes();
         Thread lifts = new lift_ops();
         Thread straight = new stay_straight();
+        Timer timer = new Timer();
+        TimerTask endgame = new TimerTask() {
+            @Override
+            public void run() {
+                gamepad1.rumbleBlips(4);
+                gamepad1.rumble(500);
+                gamepad1.rumbleBlips(4);
+                gamepad1.rumble(500);
+            }
+        };
+        gamepad1.setLedColor(1,0,0.5,1000);
+
+
 
 
         waitForStart();
         lifts.start();
         straight.start();
+        timer.schedule(endgame, 85000);
+
+
+
 
 
 
@@ -107,6 +127,9 @@ public class This_is_the_most_beta_op extends LinearOpMode {
         @Override
         public void run() {  //this is all the code for our lift
 
+            int stack = 5;
+
+
 
             while (!isInterrupted()) {
                 boolean pos_1 = gamepad2.a;
@@ -117,7 +140,28 @@ public class This_is_the_most_beta_op extends LinearOpMode {
                 boolean g = gamepad2.right_bumper;
                 boolean up = gamepad2.dpad_up;
                 boolean down = gamepad2.dpad_down;
+                boolean stack_button = gamepad2.left_stick_button;
                 double offset = gamepad2.left_trigger;
+
+
+
+
+                if (stack_button) {
+
+                    //fix these vals
+                    if (stack == 5) {
+                        po = enc + 2171;
+                    } else if (stack == 4) {
+                        po = enc + 2171;
+                    } else if (stack == 3) {
+                        po = enc + 2171;
+                    } else if (stack == 2) {
+                        po = enc + 2171;
+                    } else if (stack == 1) {
+
+                    }
+                }
+
 
 
                 if (up && offset > 0.5) {
@@ -132,18 +176,22 @@ public class This_is_the_most_beta_op extends LinearOpMode {
 
 
                 if (pos_1) {
+                    gamepad1.rumble(500);
                     po = enc + 0;
                     a.setPosition(1);
                     b.setPosition(0);
                 } else if (pos_2) {
+                    gamepad1.rumbleBlips(1);
                     po = enc + 2171;
                     a.setPosition(1);
                     b.setPosition(0);
                 } else if (pos_3) {
+                    gamepad1.rumbleBlips(2);
                     po = enc + 3354;
                     a.setPosition(1);
                     b.setPosition(0);
                 } else if (pos_4) {
+                    gamepad1.rumbleBlips(3);
                     po = enc + 4470;
                     a.setPosition(1);
                     b.setPosition(0);
