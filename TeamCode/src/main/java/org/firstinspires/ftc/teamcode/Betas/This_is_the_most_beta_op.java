@@ -91,9 +91,22 @@ public class This_is_the_most_beta_op extends LinearOpMode {
             back_right.setPower(((speed + steering) - strafe) + powerr);
 
 
+
             if (ho >= 0.5) {
                 homem.start();
             }
+
+            telemetry.addData("throttle: ", speed);
+            telemetry.addData("steering: ", steering);
+            telemetry.addData("strafe: ", strafe);
+            telemetry.addData("front_left: ", front_left.getPower());
+            telemetry.addData("front_right: ", front_right.getPower());
+            telemetry.addData("back_left: ", back_left.getPower());
+            telemetry.addData("back_right: ", back_right.getPower());
+            telemetry.addData("auto_home_button: ", ho);
+
+
+
         }
 
 
@@ -249,7 +262,7 @@ public class This_is_the_most_beta_op extends LinearOpMode {
                 double yaw = orientation.getYaw(AngleUnit.DEGREES);
 
 
-                while (steering >= -0.05 && steering <= 0.05) {
+                while (steering >= -0.1 && steering <= 0.1) {
 
 
                     if (orientation.getYaw(AngleUnit.DEGREES) >= yaw - 1 && orientation.getYaw(AngleUnit.DEGREES) <= yaw + 1) {
