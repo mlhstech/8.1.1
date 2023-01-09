@@ -282,7 +282,7 @@ public class Robot extends LinearOpMode{
 
         sleep(100);
 
-        while (orientation.getYaw(AngleUnit.DEGREES) <= -distance) {
+        while (orientation.getYaw(AngleUnit.DEGREES) >= -distance) {
 
             double powerl = 0.5;
             double powerr = 0.5;

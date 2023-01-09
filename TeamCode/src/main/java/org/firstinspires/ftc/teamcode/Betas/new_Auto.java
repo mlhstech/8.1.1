@@ -79,8 +79,7 @@ public class new_Auto extends LinearOpMode {
         robot.strafe_right(50);
         robot.turn_left(90);
         robot.drive_forward(20);
-        robot.turn_left(40);
-        sleep(5000);
+        robot.turn_right(50);
         stak.stack();
 
         //insert auto home here
