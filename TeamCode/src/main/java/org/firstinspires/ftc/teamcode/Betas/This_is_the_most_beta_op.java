@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -49,10 +50,12 @@ public class This_is_the_most_beta_op extends LinearOpMode {
         imu = hardwareMap.get(IMU.class, "imu");
         front_left.setDirection(DcMotor.Direction.REVERSE);
         back_left.setDirection(DcMotor.Direction.REVERSE);
+        //front_right.setDirection(DcMotorEx.Direction.REVERSE);
+        //back_right.setDirection(DcMotorEx.Direction.REVERSE);
         lift.setTargetPosition(0);
-        home.define(front_left, front_right, back_left, back_right, distance, distancea);
+       // home.define(front_left, front_right, back_left, back_right, distance, distancea);
         Robot_tele robot = new Robot_tele();
-        robot.define(front_left, front_right, back_left, back_right, imu);
+       // robot.define(front_left, front_right, back_left, back_right, imu);
         front_left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         front_right.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         back_left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -124,6 +127,8 @@ public class This_is_the_most_beta_op extends LinearOpMode {
             telemetry.addData("back_left: ", back_left.getPower());
             telemetry.addData("back_right: ", back_right.getPower());
             telemetry.addData("auto_home_button: ", ho);
+            telemetry.addData("turning>", powerl);
+            telemetry.update();
 
 
 
@@ -189,7 +194,7 @@ public class This_is_the_most_beta_op extends LinearOpMode {
 
 
                 if (pos_1) {
-                    gamepad1.rumble(500);
+                    gamepad1.rumble(1000);
                     po = enc + 0;
                     a.setPosition(1);
                     b.setPosition(0);
@@ -235,7 +240,7 @@ public class This_is_the_most_beta_op extends LinearOpMode {
             boolean cancel = false;
 
 
-            while (!cancel) {
+
 
                 cancel = gamepad1.left_stick_button;
 
@@ -292,7 +297,7 @@ public class This_is_the_most_beta_op extends LinearOpMode {
 
 
 
-            }
+
 
 
         }
@@ -301,27 +306,44 @@ public class This_is_the_most_beta_op extends LinearOpMode {
     public class stay_straight extends Thread {
         @Override
         public void run() {
+            //YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
+            double yaw = 0;
 
-            YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
-            AngularVelocity angularVelocity = imu.getRobotAngularVelocity(AngleUnit.DEGREES);
 
             while (!isInterrupted()) {
                 double steering = gamepad1.right_stick_x;
-                double yaw = orientation.getYaw(AngleUnit.DEGREES);
+                YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
+                telemetry.addData("hello","");
+                if(steering < -0.1 || steering > 0.1) {
 
+                    yaw = orientation.getYaw(AngleUnit.DEGREES);
+
+                }
 
                 while (steering >= -0.1 && steering <= 0.1) {
+                     steering = gamepad1.right_stick_x;
+                     orientation = imu.getRobotYawPitchRollAngles();
+                    telemetry.addData("hello","");
+                    if(steering < -0.1 || steering > 0.1) {
 
+                        yaw = orientation.getYaw(AngleUnit.DEGREES);
 
+                    }
+                    orientation = imu.getRobotYawPitchRollAngles();
+
+                        //telemetry.addData("this: >", "is me running :)");
                     if (orientation.getYaw(AngleUnit.DEGREES) >= yaw - 1 && orientation.getYaw(AngleUnit.DEGREES) <= yaw + 1) {
+                        telemetry.addData("1"," ");
                         powerr = 0;
                         powerl = 0;
-                    } else if (orientation.getYaw(AngleUnit.DEGREES) <= yaw -1) {
+                    } else if (orientation.getYaw(AngleUnit.DEGREES) >= yaw -1) {
                         powerr = 0.2;
                         powerl = -0.2;
-                    } else if (orientation.getYaw(AngleUnit.DEGREES) >= yaw + 1) {
+                        telemetry.addData("2"," ");
+                    } else if (orientation.getYaw(AngleUnit.DEGREES) <= yaw + 1) {
                         powerl = 0.2;
                         powerr = -0.2;
+                        telemetry.addData("3"," ");
                     }
                 }
 

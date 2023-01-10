@@ -46,17 +46,23 @@ public class To_stack extends LinearOpMode {
 
         Robot robot = new Robot();
         robot.define(fl, fr, bl, br, imu);
+        fl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        bl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        br.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        while (front.getRawLightDetected()<200) {
+
+
+        while (front.getRawLightDetected()<180) {
             fl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             bl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             br.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
             fl.setPower(-0.3);
-            bl.setPower(-0.3);
+            bl.setPower(0.3);
             fr.setPower(0.3);
-            br.setPower(0.3);
+            br.setPower(-0.3);
 
                         }
         fl.setPower(0);
@@ -64,12 +70,16 @@ public class To_stack extends LinearOpMode {
         fr.setPower(0);
         br.setPower(0);
 
+        br.setPower(0.5);
+        bl.setPower(-0.5);
+
+        sleep(300);
         //robot.drive_forward(8);
 
 
 
 
-        while (back.getRawLightDetected()<500) {
+        while (back.getRawLightDetected()<350) {
 
             fl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

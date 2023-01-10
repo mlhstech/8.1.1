@@ -11,7 +11,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
 
-public class Robot extends LinearOpMode{
+public class Robot_beta extends LinearOpMode{
 
 
     //circumference = 11.87374
@@ -61,7 +61,7 @@ public class Robot extends LinearOpMode{
         fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         bl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        while (a != total && b != total && c != total && d != total) {
+        while (a < total && b < total && c < total && d < total) {
             a = fl.getCurrentPosition();
             b = fr.getCurrentPosition();
             c = bl.getCurrentPosition();
@@ -98,7 +98,7 @@ public class Robot extends LinearOpMode{
         fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         bl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        while (a != total && b != total && c != total && d != total) {
+        while (a > total && b > total && c > total && d > total) {
             a = fl.getCurrentPosition();
             b = fr.getCurrentPosition();
             c = bl.getCurrentPosition();
@@ -139,7 +139,7 @@ public class Robot extends LinearOpMode{
         fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         bl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        while (a != total && b != total && c != total && d != total) {
+        while (a < total && b < total && c < total && d < total) {
             a = fl.getCurrentPosition();
             b = fr.getCurrentPosition();
             c = bl.getCurrentPosition();
@@ -176,7 +176,7 @@ public class Robot extends LinearOpMode{
         fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         bl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        while (a != total && b != total && c != total && d != total) {
+        while (a < total && b < total && c < total && d < total) {
             a = fl.getCurrentPosition();
             b = fr.getCurrentPosition();
             c = bl.getCurrentPosition();
@@ -334,3 +334,4 @@ public class Robot extends LinearOpMode{
 
     }
 }
+

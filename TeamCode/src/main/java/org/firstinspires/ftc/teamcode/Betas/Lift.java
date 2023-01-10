@@ -20,7 +20,7 @@ public class Lift extends LinearOpMode{
     public boolean ground() {
         while (lift.getCurrentPosition() != 0) {
             lift.setTargetPosition(0);
-            lift.setPower(0.5);
+            lift.setPower(1);
             lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
 
@@ -29,9 +29,9 @@ public class Lift extends LinearOpMode{
     }
 
     public boolean low() {
-        while (lift.getCurrentPosition() != 2171) {
+        while (lift.getCurrentPosition() < 2171) {
             lift.setTargetPosition(2171);
-            lift.setPower(0.5);
+            lift.setPower(1);
             lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
 
@@ -39,9 +39,9 @@ public class Lift extends LinearOpMode{
     }
 
     public boolean medium() {
-        while (lift.getCurrentPosition() != 3354) {
-            lift.setTargetPosition(3354);
-            lift.setPower(0.5);
+        while (lift.getCurrentPosition() != 757) {
+            lift.setTargetPosition(757);
+            lift.setPower(1);
             lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
 
