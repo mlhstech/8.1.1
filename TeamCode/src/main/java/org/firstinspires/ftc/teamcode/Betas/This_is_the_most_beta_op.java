@@ -224,9 +224,17 @@ public class This_is_the_most_beta_op extends LinearOpMode {
                     b.setPosition(1);
                 }
 
-                lift.setTargetPosition(po);
-                lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                lift.setPower(0.75);
+                if(po < lift.getCurrentPosition()){
+                    lift.setTargetPosition(po);
+                    lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    lift.setPower(0.5);
+                } else if (po > lift.getCurrentPosition()) {
+                    lift.setTargetPosition(po);
+                    lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    lift.setPower(1);
+                }
+
+
             }
 
         }
@@ -323,7 +331,6 @@ public class This_is_the_most_beta_op extends LinearOpMode {
                 while (steering >= -0.1 && steering <= 0.1) {
                      steering = gamepad1.right_stick_x;
                      orientation = imu.getRobotYawPitchRollAngles();
-                    telemetry.addData("hello","");
                     if(steering < -0.1 || steering > 0.1) {
 
                         yaw = orientation.getYaw(AngleUnit.DEGREES);
@@ -333,17 +340,15 @@ public class This_is_the_most_beta_op extends LinearOpMode {
 
                         //telemetry.addData("this: >", "is me running :)");
                     if (orientation.getYaw(AngleUnit.DEGREES) >= yaw - 1 && orientation.getYaw(AngleUnit.DEGREES) <= yaw + 1) {
-                        telemetry.addData("1"," ");
                         powerr = 0;
                         powerl = 0;
-                    } else if (orientation.getYaw(AngleUnit.DEGREES) >= yaw -1) {
-                        powerr = 0.2;
-                        powerl = -0.2;
-                        telemetry.addData("2"," ");
-                    } else if (orientation.getYaw(AngleUnit.DEGREES) <= yaw + 1) {
-                        powerl = 0.2;
-                        powerr = -0.2;
-                        telemetry.addData("3"," ");
+                    } else if (orientation.getYaw(AngleUnit.DEGREES) >= yaw -1 && orientation.getYaw(AngleUnit.DEGREES) <= 85) {
+                        powerr = 0.15;
+                        powerl = -0.15;
+                    } else if (orientation.getYaw(AngleUnit.DEGREES) <= yaw + 1 && orientation.getYaw(AngleUnit.DEGREES) >= -85) {
+                        powerl = 0.15;
+                        powerr = -0.15;
+
                     }
                 }
 

@@ -20,7 +20,7 @@ public class Lift extends LinearOpMode{
     public boolean ground() {
         while (lift.getCurrentPosition() != 0) {
             lift.setTargetPosition(0);
-            lift.setPower(1);
+            lift.setPower(0.7);
             lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
 
@@ -29,20 +29,35 @@ public class Lift extends LinearOpMode{
     }
 
     public boolean low() {
-        while (lift.getCurrentPosition() < 2171) {
-            lift.setTargetPosition(2171);
-            lift.setPower(1);
-            lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        while (lift.getCurrentPosition() < 961) {
+
+            if (lift.getCurrentPosition() > 961) {
+                lift.setTargetPosition(961);
+                lift.setPower(0.5);
+                lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            } else if (lift.getCurrentPosition() < 961) {
+                lift.setTargetPosition(961);
+                lift.setPower(1);
+                lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            }
+
         }
 
         return true;
     }
 
     public boolean medium() {
-        while (lift.getCurrentPosition() != 757) {
-            lift.setTargetPosition(757);
-            lift.setPower(1);
-            lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        while (lift.getCurrentPosition() <= 343) {
+            if (lift.getCurrentPosition() < 343) {
+                lift.setTargetPosition(343);
+                lift.setPower(1);
+                lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            } else if (lift.getCurrentPosition() > 343) {
+                lift.setTargetPosition(343);
+                lift.setPower(0.5);
+                lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            }
+
         }
 
         return true;

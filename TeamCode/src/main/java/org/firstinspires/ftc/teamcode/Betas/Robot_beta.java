@@ -22,6 +22,7 @@ public class Robot_beta extends LinearOpMode{
     DcMotorEx br;
     IMU imu;
     double speed = 0.5;
+    double turn_speed = 0.2;
 
 
     public void define(DcMotorEx front_left, DcMotorEx front_right, DcMotorEx back_left, DcMotorEx back_right, IMU ime) {
@@ -239,15 +240,15 @@ public class Robot_beta extends LinearOpMode{
                 fr.setPower(0);
                 br.setPower(0);
             } else if (orientation.getYaw(AngleUnit.DEGREES) <= distance) {
-                fl.setPower(-0.2);
-                bl.setPower(-0.2);
-                fr.setPower(0.2);
-                br.setPower(0.2);
+                fl.setPower(-0.4);
+                bl.setPower(-0.4);
+                fr.setPower(0.4);
+                br.setPower(0.4);
             } else if (orientation.getYaw(AngleUnit.DEGREES) >= distance) {
-                fl.setPower(0.2);
-                bl.setPower(0.2);
-                fr.setPower(-0.2);
-                br.setPower(-0.2);
+                fl.setPower(0.4);
+                bl.setPower(0.4);
+                fr.setPower(-0.4);
+                br.setPower(-0.4);
             }
 
 
@@ -298,15 +299,15 @@ public class Robot_beta extends LinearOpMode{
                 fr.setPower(0);
                 br.setPower(0);
             } else if (orientation.getYaw(AngleUnit.DEGREES) <= distance) {
-                fl.setPower(-0.2);
-                bl.setPower(-0.2);
-                fr.setPower(0.2);
-                br.setPower(0.2);
+                fl.setPower(-turn_speed);
+                bl.setPower(-turn_speed);
+                fr.setPower(turn_speed);
+                br.setPower(turn_speed);
             } else if (orientation.getYaw(AngleUnit.DEGREES) >= distance) {
-                fl.setPower(0.2);
-                bl.setPower(0.2);
-                fr.setPower(-0.2);
-                br.setPower(-0.2);
+                fl.setPower(turn_speed);
+                bl.setPower(turn_speed);
+                fr.setPower(-turn_speed);
+                br.setPower(-turn_speed);
             }
 
 
@@ -326,6 +327,10 @@ public class Robot_beta extends LinearOpMode{
 
     public void set_speed(double spee) {
         speed = spee;
+    }
+
+    public void set_turn_speed (double sp) {
+        turn_speed = sp;
     }
 
 

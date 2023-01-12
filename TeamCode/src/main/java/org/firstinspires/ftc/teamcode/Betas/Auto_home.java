@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.Betas;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -41,6 +43,9 @@ public class Auto_home extends LinearOpMode {
         Auto_home homes = new Auto_home();
         homes.define(fl, fr, bl, br, x, y);
         count = 0;
+        TelemetryPacket packet = new TelemetryPacket();
+
+        FtcDashboard dashboard = FtcDashboard.getInstance();
 
 
         while (x.getDistance(DistanceUnit.MM) >= 205 && count <= 500) {
@@ -50,6 +55,8 @@ public class Auto_home extends LinearOpMode {
             bl.setPower(0.2);
             br.setPower(0.2);
             count++;
+            packet.put("front_right_sensor", x.getDistance(DistanceUnit.MM));
+            dashboard.sendTelemetryPacket(packet);
 
         }
 
@@ -67,6 +74,10 @@ public class Auto_home extends LinearOpMode {
 
     public boolean homeb() {
 
+        TelemetryPacket packet = new TelemetryPacket();
+
+        FtcDashboard dashboard = FtcDashboard.getInstance();
+
         fl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         bl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -74,8 +85,9 @@ public class Auto_home extends LinearOpMode {
 
         count = 0;
         if (x.getDistance(DistanceUnit.MM) < 100) {
-            while (y.getDistance(DistanceUnit.MM) >= 170 && count <= 500) {
-
+            while (y.getDistance(DistanceUnit.MM) <= 190 && count <= 500) {
+                packet.put("back_sensor", y.getDistance(DistanceUnit.MM));
+                dashboard.sendTelemetryPacket(packet);
                 fl.setPower(0.2);
                 fr.setPower(-0.2);
                 bl.setPower(-0.2);
@@ -89,8 +101,9 @@ public class Auto_home extends LinearOpMode {
             bl.setPower(0);
             br.setPower(0);
         } else if (x.getDistance(DistanceUnit.MM) > 110) {
-            while (y.getDistance(DistanceUnit.MM) >= 170) {
-
+            while (y.getDistance(DistanceUnit.MM) <= 190) {
+                packet.put("back_sensor", y.getDistance(DistanceUnit.MM));
+                dashboard.sendTelemetryPacket(packet);
                 fl.setPower(-0.2);
                 fr.setPower(0.2);
                 bl.setPower(0.2);

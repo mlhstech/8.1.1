@@ -79,7 +79,7 @@ public class To_stack extends LinearOpMode {
 
 
 
-        while (back.getRawLightDetected()<350) {
+        while (back.getRawLightDetected()<300) {
 
             fl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
