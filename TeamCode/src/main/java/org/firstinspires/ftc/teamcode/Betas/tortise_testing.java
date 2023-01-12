@@ -51,9 +51,12 @@ method. The "runOpMode()" method is the main method that runs when the op mode i
     @Override
     public void runOpMode() throws InterruptedException {
 
-        /*In the "runOpMode()" method, the code creates instances of the "Robot" and "Auto_home"
+/*
+        */
+/*In the "runOpMode()" method, the code creates instances of the "Robot" and "Auto_home"
         classes and passes references to the hardware components as arguments.
-         */
+         *//*
+
         Robot robot = new Robot();
         Auto_home home = new Auto_home();
         To_stack stack = new To_stack();
@@ -81,10 +84,12 @@ method. The "runOpMode()" method is the main method that runs when the op mode i
         claw.define(s,f);
 
 
-        /*The code then calls several methods on the "robot" and "home" objects to perform various actions
+        */
+/*The code then calls several methods on the "robot" and "home" objects to perform various actions
         , such as driving forward, turning, strafing, and auto homing onto poles.
 
-         */
+         *//*
+
         claw.close();
         sleep(200);
         robot.define(front_left, front_right, back_left, back_right, imu);
@@ -106,6 +111,7 @@ method. The "runOpMode()" method is the main method that runs when the op mode i
         robot.drive_backward(7);
         robot.turn_left(90);
         robot.strafe_left(14);
+*/
 /*
         //drive from medium to stack
         robot.drive_backward(5);
@@ -113,12 +119,14 @@ method. The "runOpMode()" method is the main method that runs when the op mode i
         robot.strafe_right(12);
         robot.drive_forward(30);
         stack.stack();  //uses color sensors to allign with the stack using tape on the ground
-        */
+        *//*
 
 
 
 
 
+
+*/
 
 
     }

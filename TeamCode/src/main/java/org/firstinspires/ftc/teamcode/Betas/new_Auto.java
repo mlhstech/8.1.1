@@ -34,6 +34,8 @@ public class new_Auto extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
+
+
         Robot_beta robot = new Robot_beta();
         Auto_home home = new Auto_home();
         Lift lift = new Lift();
@@ -51,6 +53,7 @@ public class new_Auto extends LinearOpMode {
         back= hardwareMap.get(RevColorSensorV3.class, "i2c3");
         l = hardwareMap.get(Servo.class,"s0");
         r = hardwareMap.get(Servo.class,"s1");
+        imu.resetYaw();
         TelemetryPacket packet = new TelemetryPacket();
         packet.put("x", 3.7);
         packet.put("status", "alive");
@@ -63,7 +66,7 @@ public class new_Auto extends LinearOpMode {
 
         robot.define(front_left, front_right, back_left, back_right, imu);
         home.define(front_left, front_right, back_left, back_right, a, b);
-        stak.define(front_left, front_right, back_left, back_right, imu, front, back);
+        stak.define(front_left, front_right, back_left, back_right, imu, front, back, a);
         lift.define(lif);
         claw.define(l, r);
 
@@ -86,6 +89,7 @@ public class new_Auto extends LinearOpMode {
         lift.low();
         robot.turn_left(0);
         robot.strafe_right(18);
+        home.set_speed(0.3);
         home.home();
         claw.open();
         sleep(100);
@@ -115,10 +119,10 @@ public class new_Auto extends LinearOpMode {
 
 
         //grab from stack
-        stak.stack();
+
         lift.medium();
         claw.open();
-        robot.drive_forward(8);
+        stak.stack();
         claw.close();
         sleep(300);
         lift.low();
@@ -129,6 +133,7 @@ public class new_Auto extends LinearOpMode {
         robot.strafe_left(14);
         sleep(300);
         home.home();
+        robot.drive_backward(1);
         claw.open();
         sleep(300);
         robot.drive_backward(5);
@@ -136,16 +141,15 @@ public class new_Auto extends LinearOpMode {
         claw.close();
         lift.ground();
         robot.drive_forward(22);
-        stak.stack();
         lift.medium();
         claw.open();
-        robot.drive_forward(6);
+        stak.stack();
         sleep(400);
         claw.close();
         sleep(400);
         lift.low();
         sleep(300);
-        robot.set_speed(0.7);
+        robot.set_speed(0.5);
         robot.drive_backward(48);
         lift.ground();
 
@@ -175,6 +179,9 @@ public class new_Auto extends LinearOpMode {
 
 
             while(!isStopRequested()) {
+
+
+
                 YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
                 packet.put("status", "alive");
                 packet.put("front_color_Raw: ", front.getRawLightDetected());

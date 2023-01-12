@@ -25,7 +25,7 @@ public class Multi_test extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        Robot robot = new Robot();
+ /*       Robot robot = new Robot();
         Auto_home home = new Auto_home();
         Lift lift = new Lift();
         To_stack stak = new To_stack();
@@ -50,7 +50,7 @@ public class Multi_test extends LinearOpMode {
 
         robot.define(front_left, front_right, back_left, back_right, imu);
         home.define(front_left, front_right, back_left, back_right, a, b);
-        stak.define(front_left, front_right, back_left, back_right, imu, front, back);
+        stak.define(front_left, front_right, back_left, back_right, imu, front, back, a);
         lift.define(lif);
         //Thread low = new Thread(Lift.low());
 
@@ -84,7 +84,7 @@ public class Multi_test extends LinearOpMode {
         stak.stack();
 
         //insert auto home here
-
+*/
 
 
 

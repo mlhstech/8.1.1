@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Betas;
 
+import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -17,6 +18,7 @@ public class Home_on_stack extends LinearOpMode {
     IMU imu;
     RevColorSensorV3 front;
     RevColorSensorV3 back;
+    Rev2mDistanceSensor a;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -30,7 +32,7 @@ public class Home_on_stack extends LinearOpMode {
         front = hardwareMap.get(RevColorSensorV3.class, "i2c2");
         back= hardwareMap.get(RevColorSensorV3.class, "i2c3");
 
-        stack.define(front_left, front_right, back_left, back_right, imu, front, back);
+        stack.define(front_left, front_right, back_left, back_right, imu, front, back, a);
 
         stack.stack();
     }
